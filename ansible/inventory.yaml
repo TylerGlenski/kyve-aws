@@ -1,0 +1,13 @@
+validator-nodes:  
+  hosts:
+    validator-01:
+      ansible_host: xxx.xxx.xxx.xxx
+sentry-nodes:
+  hosts:
+    sentry-01:
+      ansible_host: xxx.xxx.xxx.xxx
+    sentry-02:
+      ansible_host: xxx.xxx.xxx.xxx
+
+### ### TODO ### ###
+## - need to integrate ec2 autopopulate ansible hosts plugin. 

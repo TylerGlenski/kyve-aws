@@ -1,0 +1,40 @@
+---
+- name: set distro-specific variables
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_distribution }}.yaml"
+    - default.yaml
+    
+- name: create operator UNIX accounts
+  user:
+    name: "{{ item.name }}"
+    state: '{{ item.state | default("present") }}'
+    comment: "{{ item.comment }}"
+    groups: "{{ unix_operator_group }}"
+    shell: "/bin/bash"
+    uid: "{{ item.uid }}"
+  with_items: "{{ operator_accounts }}"
+  ignore_errors: true
+
+- name: delete removed operator UNIX accounts
+  user:
+    name: "{{ item }}"
+    state: "absent"
+  with_items: "{{ removed_operator_accounts }}"
+
+- name: create operator authorized keys
+  authorized_key:
+    user: "{{ item.0.name }}"
+    state: '{{ item.0.state | default("present") }}'
+    key: "{{ item.1 }}"
+    exclusive: yes
+  with_subelements:
+    - "{{ operator_accounts }}"
+    - ssh_keys
+
+- name: sudo without password for user group
+  copy:
+    content: '%{{ item.name }} ALL=(ALL:ALL) NOPASSWD:ALL'
+    dest: "/etc/sudoers.d/{{ item.name }}_nopasswd"
+    mode: 0440
+  with_items: "{{ operator_accounts }}"

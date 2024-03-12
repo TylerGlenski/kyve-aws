@@ -1,0 +1,6 @@
+- name: Install base apt packages
+  ansible.builtin.apt:
+    pkg:
+    - python3-pip
+    state: present
+    update_cache: yes

@@ -1,0 +1,15 @@
+---
+- hosts: "all"
+  become: yes
+  become_user: root
+  gather_facts: yes
+  serial: 1
+  pre_tasks:
+    - name: Install python3-apt
+      ansible.builtin.apt:
+        name: python3-apt
+        state: present
+    - name: update repositories
+      apt: update_cache=yes
+  roles:
+    - base

@@ -1,0 +1,8 @@
+removed_operator_accounts: []
+
+operator_accounts: []
+# - name: operator_testuser
+#   comment: test-user
+#   uid: 5001
+#   ssh_keys:
+#     - ""
