@@ -31,7 +31,7 @@ output "kyve_cidr_prefix" {
 }
 
 output "ubuntu20_ami" {
-  value = "ami-0eb199b995e2bc4e3"
+  value = "ami-0cd59ecaf368e5ccf"
 }
 
 
@@ -44,6 +44,11 @@ output "company_name" {
 #   value = "kyve-"
 # }
 
+output "aws_keypair_name" {
+  value = "kyve-network"
+}
+
 output "aws_account_number" {
   value = ""
 }
+

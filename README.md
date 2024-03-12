@@ -26,3 +26,5 @@
 - Start building out ansible for node management and install
 - Add security playbooks as needed
 - cleanup the ansible and terraform dockerfile its messy
+- Use packer to bake a image of the node, and EC2 autoscaling group to make sure we have 100% uptime? min: 1 target: 1 max : 2 for ec2 ASG
+    - on node start, validator services start.
