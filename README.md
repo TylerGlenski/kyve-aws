@@ -25,3 +25,4 @@
 - need to integrate ec2 autopopulate ansible hosts plugin.
 - Start building out ansible for node management and install
 - Add security playbooks as needed
+- cleanup the ansible and terraform dockerfile its messy
